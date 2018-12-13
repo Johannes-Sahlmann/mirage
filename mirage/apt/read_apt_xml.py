@@ -412,6 +412,8 @@ class ReadAPTXML():
                 if observation_dict['SubpixelDitherType'] in ['3-POINT-WITH-MIRI-F770W']:
                     number_of_dithers = str(np.int(number_of_dithers) * 3)
                 elif observation_dict['SubpixelDitherType'] in ['STANDARD']:
+                    if observation_dict[dither_key_name] in ['2TIGHTGAPS']:
+                        number_of_dithers = observation_dict[dither_key_name][0]
                     number_of_dithers = str(np.int(number_of_dithers) * np.int(observation_dict['SubpixelPositions']))
             else:
                 print('Element {} not found, use default value.'.format(dither_key_name))
